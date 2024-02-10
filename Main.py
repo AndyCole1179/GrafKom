@@ -15,7 +15,8 @@ class main():
         pygame.init()
         pygame.display.set_mode((800,600), DOUBLEBUF|OPENGL)
         glOrtho(0,800,600,0,-1,1)
-        glClearColor(0,25,255,1)
+        background = (30,40,50)
+        glClearColor(background[0]/255,background[1]/255,background[2]/255,1)
 
         cermin = Cermin()
         Benda = benda(cermin)
