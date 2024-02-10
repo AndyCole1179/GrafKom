@@ -31,14 +31,14 @@ class main():
                     quit()
             glClear(GL_COLOR_BUFFER_BIT)
             DrawC.dda(*garis_tengah)
-            cermin.gambar(200,(400,300))
-            #cermin.gambarfocus()
-            Benda.gambar(350,100)
+            #cermin.gambar(200,(400,300))
+            cermin.gambargaris(200)
+            cermin.gambarfocus()
+            Benda.gambar(250,100)
             bayang.kalkulasi_bayangan()
-            Garis.gbc()
-
+            #Garis.gbc()
+            Garis.gbcgaris()
             
-
             pygame.display.flip()
             pygame.time.wait(10)
 
