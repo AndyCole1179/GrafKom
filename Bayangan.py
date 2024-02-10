@@ -27,23 +27,5 @@ class bayangan:
         x = math.ceil(math.sqrt((r**2)-(y**2)))
 
         return x
-    def gbc(self): #garis benda cermin
-        y = self.benda.tinggi
-        r = self.cermin.Radius
-        x = bayangan.kalkulasi_garistemu(y,r)
-        print(x)
-        koorlingkaran = (self.cermin.Center[0]+x,self.benda.kooratas[1])
-        DrawC.dda(self.benda.kooratas,koorlingkaran,(255,255,0))
-    
-    def gic(self):
-        y = self.tinggi
-        r = self.cermin.Radius
-        x = bayangan.kalkulasi_garistemu(y,r)
-        print(x)
-        koorlingkaran = (self.cermin.Center[0]+x,self.cooratas[1])
-        DrawC.dda(self.cooratas,koorlingkaran,(255,255,0))
-
-
-        #buat cermin atas titik focus bayangan
         #buat benda titik focus cermin bawah
         #buat benda titik titik tengah,bayangan
