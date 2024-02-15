@@ -46,16 +46,21 @@ class garis:
 
     def gif(self):
 
-        if self.benda.koor[0] > self.cermin.focus[0]  and self.benda.koor[0]< self.cermin.perimeter[0]:#Ruang 4
-            DrawC.dda(self.bayangan.cooratas,self.KoorCerminAtas,self.warna)
+        if self.benda.koor[0] > self.cermin.focus[0]  and self.benda.koor[0]< self.cermin.perimeter[0]:#Ruang 1
+            DrawC.dda(self.KoorCerminAtas,self.bayangan.cooratas,self.warna)
             DrawC.dda(self.KoorCerminBawah,self.benda.kooratas,self.warna)
 
-        elif self.benda.koor[0] > self.cermin.focus[0]  and self.benda.koor[0] > self.cermin.perimeter[0]:#Ruang 1
+        elif self.benda.koor[0] > self.cermin.focus[0]  and self.benda.koor[0] > self.cermin.perimeter[0]:#Ruang 4
             DrawC.dda(self.KoorCerminAtas,self.bayangan.cooratas,self.warna)
             DrawC.dda(self.KoorCerminBawah,self.benda.kooratas,self.warna)
 
         else : # Ruang 2 dan 3
             DrawC.dda(self.KoorCerminAtas,self.bayangan.cooratas,self.warna)
             DrawC.dda(self.benda.kooratas,self.KoorCerminBawah,self.warna)
-
+        # DsrawC.dda(self.bayangan.cooratas,self.KoorCerminAtas,self.warna)
+        # print(self.bayangan.cooratas)
+        # print(self.KoorCerminAtas)
+        # DrawC.dda(self.KoorCerminBawah,self.benda.kooratas,self.warna)
+        # print(self.KoorCerminBawah)
+        # print(self.benda.kooratas)
     
