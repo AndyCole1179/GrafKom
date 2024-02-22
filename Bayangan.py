@@ -11,10 +11,12 @@ class bayangan:
         self.coorbawah = None
     
     def kalkulasi_bayangan(self):
-        Focus = self.cermin.Radius/2
-        self.jarak = int(1/((1/(self.cermin.Radius/2))-(1/self.benda.jarak)))
-        self.tinggi = int (self.jarak*self.benda.tinggi/self.benda.jarak)
-        self.gambar_bayang()
+        if self.benda.jarak == 0 or self.cermin.Radius == 0 or self.cermin.Radius/2 == self.benda.jarak :
+            pass
+        else:
+            self.jarak = int(1/((1/(self.cermin.Radius/2))-(1/self.benda.jarak)))
+            self.tinggi = int (self.jarak*self.benda.tinggi/self.benda.jarak)
+            self.gambar_bayang()
 
     def gambar_bayang(self):
         self.coorbawah = (self.cermin.perimeter[0]-self.jarak,self.cermin.perimeter[1])
