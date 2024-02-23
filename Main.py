@@ -26,7 +26,8 @@ class main():
         bayang = bayangan(Benda)
         Garis = garis(bayang)
         garis_tengah = ((0,300),(800,300),(255,0,0))
-        object = (-150,100,50)
+        J,T,L = 150,50,50
+        object = (J,T,L,T)
         object1 = None
         box_click = None
         
@@ -38,12 +39,20 @@ class main():
                 if event.type == pygame.MOUSEBUTTONDOWN :
                     mouse_x , mouse_y = pygame.mouse.get_pos()
                     mouse_x = 400-mouse_x
+                    mouse_y = 300-mouse_y
 
                     if mouse_x < 0:
                         PXKanan = object1[0]
                         PXKiri = PXKanan - object1[2]
-                        PYAtas = -300 + object[1]
-                        PYBawah = 300
+                        if mouse_y < 0 :
+                            print('x<0,y<0')
+                            PYAtas = 0+object1[1]
+                            PYBawah = 0
+                        else :
+                            PYBawah = object1[1]
+                            PYAtas = 0
+                            print('x<0 ,y>0')
+
                         if (PXKiri < mouse_x < PXKanan) and    (PYAtas < mouse_y < PYBawah):
                             box_click = True
                         else:
@@ -52,8 +61,14 @@ class main():
                     else:
                         PXKanan = object1[0]
                         PXKiri = PXKanan + object1[2]
-                        PYAtas = -300 - object[1]
                         PYBawah = 300
+                        if mouse_y < 0 :
+                            PYAtas = 0+object1[1]
+                            PYBawah = 0
+
+                        else :
+                            PYBawah = object1[1]
+                            PYAtas = 0
                         
                         if (PXKanan < mouse_x < PXKiri) and    (PYAtas < mouse_y < PYBawah):
                             box_click = True
@@ -66,7 +81,6 @@ class main():
             glClear(GL_COLOR_BUFFER_BIT)
             DrawC.dda(*garis_tengah)
             cermin.gambargaris(200)
-            #cermin.gambarfocus()
             if object1 is None:
                 Benda.gambar(*object)
                 object1 = object
@@ -77,9 +91,10 @@ class main():
             if dragging and box_click:
                 mouse_x , mouse_y = pygame.mouse.get_pos()
                 mouse_x = 400-mouse_x
-                mouse_y = mouse_y -300
-                object1 = (mouse_x,object1[1],object1[2])
+                mouse_y = 300-mouse_y
+                object1 = (mouse_x,mouse_y,object1[2],object1[3])
             pygame.display.flip()
             pygame.time.wait(10)
+            
 Main = main
 Main.main()

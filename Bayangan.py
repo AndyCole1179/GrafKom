@@ -22,12 +22,7 @@ class bayangan:
         self.coorbawah = (self.cermin.perimeter[0]-self.jarak,self.cermin.perimeter[1])
         self.cooratas =  (self.coorbawah[0],self.coorbawah[1]+self.tinggi)
         DrawC.dda(self.coorbawah,self.cooratas,self.warna)
-        #self.gbc()
-        #self.gic()
 
     def kalkulasi_garistemu(y,r):
         x = math.ceil(math.sqrt((r**2)-(y**2)))
-
         return x
-        #buat benda titik focus cermin bawah
-        #buat benda titik titik tengah,bayangan

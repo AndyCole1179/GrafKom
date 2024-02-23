@@ -3,14 +3,15 @@ from OpenGL.GLU import *
 import math
 
 class DrawC:
-    def gambar(x,y,rgb):
+    def gambar(XY,rgb):
+        x,y = XY
         glPointSize(1.0)
         glColor3ub(*rgb)
         glBegin(GL_POINTS)
         glVertex2f(math.ceil(x),math.ceil(y))
         glEnd()
 
-    def dda(Coor1, Coor2, rgb):
+    def dda(Coor1, Coor2, rgb,default=False):
         x1, y1 = Coor1
         x2, y2 = Coor2
         dx = x2 - x1
@@ -26,17 +27,97 @@ class DrawC:
             y_increment = 0
         else:
             y_increment = dy / steps
-
+        
         x = x1
         y = y1
         x_rounded = round(x)
         y_rounded = round(y)
-        DrawC.gambar(x_rounded, y_rounded, rgb)
+        DrawC.gambar((x_rounded, y_rounded), rgb)
+
 
         for _ in range(int(steps)):
             x += x_increment
             y += y_increment
             x_rounded = round(x)
             y_rounded = round(y)
+            DrawC.gambar((x_rounded, y_rounded), rgb)
 
-            DrawC.gambar(x_rounded, y_rounded, rgb)
+
+
+        # if default == True:
+        #     width = 800
+        #     height = 600
+
+        #     intersections = []
+        #     if dx != 0:  
+        #         if x1 < 0:
+        #             intersections.append((0, y1 + (0 - x1) * dy / dx))
+        #         elif x1 > width:
+        #             intersections.append((width, y1 + (width - x1) * dy / dx))
+        #     if dy != 0:  
+        #         if y1 < 0:
+        #             intersections.append((x1 + (0 - y1) * dx / dy, 0))
+        #         elif y1 > height:
+        #             intersections.append((x1 + (height - y1) * dx / dy, height))
+
+        #     for intersection in intersections:
+        #         DrawC.dda(Coor1, intersection, rgb)
+
+
+
+    def ddaw(Coor1, Coor2, rgb):
+        x1,y1 = Coor1
+        x2,y2 = Coor2
+        if x2-x1 != 0 :
+            slope =(y2-y1)/(x2-x1)
+        else:
+            slope = None
+        
+        if slope is not None and slope != 0:
+        # Calculate intersection points with window borders
+            potong_kiri = (0, int(y1 - (x1 * slope)))
+            potong_kanan = (800, int(y1 + ((800 - x1) * slope)))
+            potong_atas = (int(x1 - (y1 / slope)), 0)
+            potong_bawah = (int(x1 + ((600 - y1) / slope)), 600)
+        
+        # Cari garis potong di windows
+        intersections = [point for point in [potong_kiri, potong_kanan, potong_atas, potong_bawah] if
+                         0 <= point[0] <= 800 and 0 <= point[1] <= 600]
+
+        if intersections:
+            potong = min(intersections, key=lambda p: (p[0] - x1) ** 2 + (p[1] - y1) ** 2)
+        
+
+    def ddadot(Coor1, Coor2, rgb):
+        space = 5
+        x1, y1 = Coor1
+        x2, y2 = Coor2
+        dx = x2 - x1
+        dy = y2 - y1
+        steps = max(abs(dx), abs(dy))
+
+        if dx == 0: 
+            x_increment = 0
+        else:
+            x_increment = dx / steps
+
+        if dy == 0: 
+            y_increment = 0
+        else:
+            y_increment = dy / steps
+        
+        x,y = x1,y1
+        draw_dot =True
+        count = 0
+        # DrawC.gambar(x_rounded, y_rounded, rgb)
+
+        for i in range(int(steps)):
+            if draw_dot:
+                DrawC.gambar(((int(x)), int((y))),rgb)
+            count += 1
+            if count ==space:
+                count = 0
+                draw_dot = not draw_dot
+            x += x_increment
+            y += y_increment
+
