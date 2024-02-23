@@ -18,12 +18,12 @@ class DrawC:
         dy = y2 - y1
         steps = max(abs(dx), abs(dy))
 
-        if dx == 0: 
+        if dx == 0:
             x_increment = 0
         else:
             x_increment = dx / steps
 
-        if dy == 0: 
+        if dy == 0:
             y_increment = 0
         else:
             y_increment = dy / steps
@@ -43,28 +43,6 @@ class DrawC:
             DrawC.gambar((x_rounded, y_rounded), rgb)
 
 
-
-        # if default == True:
-        #     width = 800
-        #     height = 600
-
-        #     intersections = []
-        #     if dx != 0:  
-        #         if x1 < 0:
-        #             intersections.append((0, y1 + (0 - x1) * dy / dx))
-        #         elif x1 > width:
-        #             intersections.append((width, y1 + (width - x1) * dy / dx))
-        #     if dy != 0:  
-        #         if y1 < 0:
-        #             intersections.append((x1 + (0 - y1) * dx / dy, 0))
-        #         elif y1 > height:
-        #             intersections.append((x1 + (height - y1) * dx / dy, height))
-
-        #     for intersection in intersections:
-        #         DrawC.dda(Coor1, intersection, rgb)
-
-
-
     def ddaw(Coor1, Coor2, rgb):
         x1,y1 = Coor1
         x2,y2 = Coor2
@@ -82,7 +60,7 @@ class DrawC:
         
         # Cari garis potong di windows
         intersections = [point for point in [potong_kiri, potong_kanan, potong_atas, potong_bawah] if
-                         0 <= point[0] <= 800 and 0 <= point[1] <= 600]
+                        0 <= point[0] <= 800 and 0 <= point[1] <= 600]
 
         if intersections:
             potong = min(intersections, key=lambda p: (p[0] - x1) ** 2 + (p[1] - y1) ** 2)
@@ -96,12 +74,12 @@ class DrawC:
         dy = y2 - y1
         steps = max(abs(dx), abs(dy))
 
-        if dx == 0: 
+        if dx == 0:
             x_increment = 0
         else:
             x_increment = dx / steps
 
-        if dy == 0: 
+        if dy == 0:
             y_increment = 0
         else:
             y_increment = dy / steps

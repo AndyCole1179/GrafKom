@@ -18,7 +18,7 @@ class main():
         pygame.init()
         pygame.display.set_mode((800,600), DOUBLEBUF|OPENGL)
         glOrtho(0,800,600,0,-1,1)
-        background = (30,40,50)
+        background = (155,211,221)
         glClearColor(background[0]/255,background[1]/255,background[2]/255,1)
 
         cermin = Cermin()
@@ -85,7 +85,7 @@ class main():
                 Benda.gambar(*object)
                 object1 = object
             else :
-                 Benda.gambar(*object1)
+                Benda.gambar(*object1)
             bayang.kalkulasi_bayangan()
             Garis.gbcgaris()
             if dragging and box_click:

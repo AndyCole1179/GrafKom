@@ -8,7 +8,7 @@ class garis:
         self.benda = bayangan.benda
         self.KoorCerminAtas=None
         self.KoorCerminBawah = None
-        self.warna = (255,255,0)
+        self.warna = (255, 255, 153)
 
     def kalkulasi_garistemu(self,y,r):
         x = (math.ceil(math.sqrt((r**2)-(y**2))))
@@ -61,10 +61,11 @@ class garis:
 
         # Find valid intersections within window bounds
             garis_potong = [point for point in [potong_kiri, potong_kanan, potong_atas, potong_bawah] if
-                         0 <= point[0] <= 800 and 0 <= point[1] <= 600]
+                        0 <= point[0] <= 800 and 0 <= point[1] <= 600]
             return(garis_potong)
 
     def gif(self):
+        
         #ruang 1
         if self.benda.koor[0] > self.cermin.focus[0]  and self.benda.koor[0]< self.cermin.perimeter[0]:
             DrawC.ddadot(self.KoorCerminAtas,self.bayangan.cooratas,self.warna)
@@ -78,6 +79,7 @@ class garis:
                     DrawC.ddadot(bebek[0],self.bayangan.cooratas,self.warna)
             else :
                 DrawC.ddadot(bebek[1],self.KoorCerminAtas,self.warna)
+
 
         #ruang 4
         elif self.benda.koor[0] > self.cermin.focus[0]  and self.benda.koor[0] > self.cermin.perimeter[0]:
@@ -98,17 +100,18 @@ class garis:
                     DrawC.ddadot(bebek[0],self.KoorCerminAtas,self.warna)
                 else:
                     DrawC.ddadot(bebek[1],self.KoorCerminAtas,self.warna)
+            
         # Ruang 2 dan 3
-        else : 
+        else :
             ayam = self.kalkulasi(self.KoorCerminBawah,self.benda.kooratas)
             if self.benda.kooratas[1] < 300:
                 DrawC.dda(ayam[0],self.KoorCerminBawah,self.warna)
 
             else :
-                 if ayam[0][0] == 0:
+                if ayam[0][0] == 0:
                     DrawC.dda(ayam[0],self.KoorCerminBawah,self.warna)
-                 else:
-                     DrawC.dda(ayam[1],self.KoorCerminBawah,self.warna)
+                else:
+                    DrawC.dda(ayam[1],self.KoorCerminBawah,self.warna)
             bebek = self.kalkulasi(self.KoorCerminAtas,self.bayangan.cooratas)
             if self.bayangan.cooratas[1] >300:
                 if bebek[0][0] == 0:

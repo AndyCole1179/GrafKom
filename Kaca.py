@@ -5,7 +5,7 @@ class Cermin:
         self.Radius= None
         self.Center= None
         self.perimeter = None
-        self.Warna = (125,0,0)
+        self.Warna = (182, 102, 210)
         self.focus = None
 
     def gambar (self,radius,perimeter):

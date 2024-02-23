@@ -5,7 +5,7 @@ class benda:
         self.tinggi = None
         self.lebar = None
         self.cermin = cermin
-        self.warna = (255,0,0)
+        self.warna = (205,0,26)
         self.jarak = None
         self.kooratas = None
         self.koor = None
