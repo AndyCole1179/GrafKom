@@ -22,16 +22,22 @@ class bayangan:
     def gambar_bayang(self):
         self.coorbawah = (self.cermin.perimeter[0]-self.jarak,self.cermin.perimeter[1])
         self.cooratas =  (self.coorbawah[0],self.coorbawah[1]+self.tinggi)
-        if self.jarak > 0:
-            kanan_atas = (self.cooratas[0]-int(self.lebar),self.cooratas[1])
-            kanan_bawah = (self.coorbawah[0]-int(self.lebar),self.coorbawah[1])
-        if self.cooratas[1] < 300:
-            kanan_atas = (self.cooratas[0]+int(self.lebar),self.cooratas[1])
-            kanan_bawah = (self.coorbawah[0]+int(self.lebar),self.coorbawah[1])
-        if self.jarak <0:
-            print("bebek")
-            kanan_atas = (int(self.lebar)+self.cooratas[0],self.cooratas[1])
-            kanan_bawah = (int(self.lebar)+self.coorbawah[0],self.coorbawah[1])
+
+        if self.jarak> 0: #bayangan berada di kiri cermin
+            if self.cooratas[1] > 300: #bayangan berada di bawah titik tengah
+                kanan_atas = (self.cooratas[0]-int(self.lebar),self.cooratas[1])
+                kanan_bawah = (self.coorbawah[0]-int(self.lebar),self.coorbawah[1])
+            else :  #bayangan berada di atas titik tengah
+                kanan_atas = (self.cooratas[0]+int(self.lebar),self.cooratas[1])
+                kanan_bawah = (self.coorbawah[0]+int(self.lebar),self.coorbawah[1])
+
+        else: #bayangan berada di kanan cermin
+            if self.cooratas[1] > 300: #bayangan berada di bawah titik tengah
+                kanan_atas = (self.cooratas[0]+int(self.lebar),self.cooratas[1])
+                kanan_bawah = (self.coorbawah[0]+int(self.lebar),self.coorbawah[1])
+            else :#bayangan berada di atas titik tengah
+                kanan_atas = (self.cooratas[0]-int(self.lebar),self.cooratas[1])
+                kanan_bawah = (self.coorbawah[0]-int(self.lebar),self.coorbawah[1])          
         
         DrawC.dda(self.coorbawah,self.cooratas,self.warna)
         DrawC.dda(self.cooratas,kanan_atas,self.warna)
