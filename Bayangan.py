@@ -1,5 +1,8 @@
 from Draw import DrawC
 import math
+import settingwindow
+
+display = settingwindow.window
 class bayangan:
     def __init__(self,benda) :
         self.tinggi =None
@@ -24,7 +27,7 @@ class bayangan:
         self.cooratas =  (self.coorbawah[0],self.coorbawah[1]+self.tinggi)
 
         if self.jarak> 0: #bayangan berada di kiri cermin
-            if self.cooratas[1] > 300: #bayangan berada di bawah titik tengah
+            if self.cooratas[1] > display[1]/2: #bayangan berada di bawah titik tengah
                 kanan_atas = (self.cooratas[0]-int(self.lebar),self.cooratas[1])
                 kanan_bawah = (self.coorbawah[0]-int(self.lebar),self.coorbawah[1])
             else :  #bayangan berada di atas titik tengah
@@ -32,12 +35,12 @@ class bayangan:
                 kanan_bawah = (self.coorbawah[0]+int(self.lebar),self.coorbawah[1])
 
         else: #bayangan berada di kanan cermin
-            if self.cooratas[1] > 300: #bayangan berada di bawah titik tengah
+            if self.cooratas[1] > display[1]/2: #bayangan berada di bawah titik tengah
                 kanan_atas = (self.cooratas[0]+int(self.lebar),self.cooratas[1])
                 kanan_bawah = (self.coorbawah[0]+int(self.lebar),self.coorbawah[1])
             else :#bayangan berada di atas titik tengah
                 kanan_atas = (self.cooratas[0]-int(self.lebar),self.cooratas[1])
-                kanan_bawah = (self.coorbawah[0]-int(self.lebar),self.coorbawah[1])          
+                kanan_bawah = (self.coorbawah[0]-int(self.lebar),self.coorbawah[1])
         
         DrawC.dda(self.coorbawah,self.cooratas,self.warna)
         DrawC.dda(self.cooratas,kanan_atas,self.warna)
