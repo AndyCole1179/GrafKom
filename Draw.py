@@ -1,11 +1,14 @@
 from OpenGL.GL import *
 from OpenGL.GLU import *
 import math
+import settingwindow
+
+display = settingwindow.window
 
 class DrawC:
     def gambar(XY,rgb):
         x,y = XY
-        glPointSize(1.0)
+        glPointSize(2.0)
         glColor3ub(*rgb)
         glBegin(GL_POINTS)
         glVertex2f(math.ceil(x),math.ceil(y))
@@ -54,13 +57,13 @@ class DrawC:
         if slope is not None and slope != 0:
         # Calculate intersection points with window borders
             potong_kiri = (0, int(y1 - (x1 * slope)))
-            potong_kanan = (800, int(y1 + ((800 - x1) * slope)))
+            potong_kanan = (display[0], int(y1 + ((display[0] - x1) * slope)))
             potong_atas = (int(x1 - (y1 / slope)), 0)
-            potong_bawah = (int(x1 + ((600 - y1) / slope)), 600)
+            potong_bawah = (int(x1 + ((display[1] - y1) / slope)), display[1])
         
         # Cari garis potong di windows
         intersections = [point for point in [potong_kiri, potong_kanan, potong_atas, potong_bawah] if
-                        0 <= point[0] <= 800 and 0 <= point[1] <= 600]
+                        0 <= point[0] <= display[0] and 0 <= point[1] <= display[1]]
 
         if intersections:
             potong = min(intersections, key=lambda p: (p[0] - x1) ** 2 + (p[1] - y1) ** 2)

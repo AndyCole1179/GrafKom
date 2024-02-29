@@ -1,4 +1,4 @@
-import pygame 
+import pygame
 from pygame.locals import *
 from OpenGL.GL import *
 from OpenGL.GLU import *
@@ -7,6 +7,7 @@ from Benda import benda
 from Kaca import Cermin
 from Bayangan import bayangan
 from garis_cahaya import garis
+import settingwindow
 
 
 class main():
@@ -14,19 +15,19 @@ class main():
     def main():
         dragging = False
         mouse_click = False
-
+        display = settingwindow.window
         pygame.init()
-        pygame.display.set_mode((800,600), DOUBLEBUF|OPENGL)
-        glOrtho(0,800,600,0,-1,1)
-        background = (155,211,221)
+        pygame.display.set_mode((display), DOUBLEBUF|OPENGL)
+        glOrtho(0,display[0],display[1],0,-1,1)
+        background = (135, 206, 235)
         glClearColor(background[0]/255,background[1]/255,background[2]/255,1)
 
         cermin = Cermin()
         Benda = benda(cermin)
         bayang = bayangan(Benda)
         Garis = garis(bayang)
-        garis_tengah = ((0,300),(800,300),(255,0,0))
-        J,T,L = 150,50,50
+        garis_tengah = ((0,display[1]/2),(display[0],display[1]/2),(250,162,47))
+        J,T,L = 71.66667,49.66667,383.66667
         object = (J,T,L,T)
         object1 = None
         box_click = None
@@ -38,8 +39,8 @@ class main():
                     quit()
                 if event.type == pygame.MOUSEBUTTONDOWN :
                     mouse_x , mouse_y = pygame.mouse.get_pos()
-                    mouse_x = 400-mouse_x
-                    mouse_y = 300-mouse_y
+                    mouse_x = display[0]/2 -mouse_x
+                    mouse_y = display[1]/2 -mouse_y
 
                     if mouse_x < 0:
                         PXKanan = object1[0]
@@ -61,7 +62,7 @@ class main():
                     else:
                         PXKanan = object1[0]
                         PXKiri = PXKanan + object1[2]
-                        PYBawah = 300
+                        PYBawah = display[1]
                         if mouse_y < 0 :
                             PYAtas = 0+object1[1]
                             PYBawah = 0
@@ -81,6 +82,7 @@ class main():
             glClear(GL_COLOR_BUFFER_BIT)
             DrawC.dda(*garis_tengah)
             cermin.gambargaris(200)
+            Benda.garis_benda(*object)
             if object1 is None:
                 Benda.gambar(*object)
                 object1 = object
@@ -90,8 +92,8 @@ class main():
             Garis.gbcgaris()
             if dragging and box_click:
                 mouse_x , mouse_y = pygame.mouse.get_pos()
-                mouse_x = 400-mouse_x
-                mouse_y = 300-mouse_y
+                mouse_x = display[0]/2-mouse_x
+                mouse_y = display[1]/2-mouse_y
                 object1 = (mouse_x,mouse_y,object1[2],object1[3])
             pygame.display.flip()
             pygame.time.wait(10)
