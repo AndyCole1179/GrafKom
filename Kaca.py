@@ -1,11 +1,14 @@
 from Draw import DrawC
 import math
+import settingwindow
+
+display = settingwindow.window
 class Cermin:
     def __init__(self):
         self.Radius= None
         self.Center= None
         self.perimeter = None
-        self.Warna = (125,0,0)
+        self.Warna = (182, 102, 210)
         self.focus = None
 
     def gambar (self,radius,perimeter):
@@ -21,10 +24,10 @@ class Cermin:
             
     def gambargaris (self,radius):
         self.Radius = radius
-        self.perimeter = (400,300)
+        self.perimeter = (display[0]/2,display[1]/2)
         self.Center = (self.perimeter[0]-radius,self.perimeter[1])
         self.focus = (self.perimeter[0]-(radius/2),self.perimeter[1])
-        DrawC.dda((400,0),(400,600),(255,0,0))
+        DrawC.dda((display[0]/2,0),(display[0]/2,display[1]),(255,0,0))
 
 
     def gambarfocus(self):
